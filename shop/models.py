@@ -26,15 +26,19 @@ class Business(models.Model):
     other_details=models.TextField()
     location=models.CharField(default="enter location details",null='False',max_length=255)
     contactInfo = models.OneToOneField(ContactInfo,null = True,on_delete=models.CASCADE)
+    
 
     def __str__(self):
         return self.name
 
+class Comments(models.Model):
+    comment = models.TextField()
+
 
 class Review(models.Model):
     email = models.EmailField()
-    review = models.IntegerField (default=0,blank=True, null=True)
-    comment = models.TextField()
+    review = models.IntegerField(default=0,blank=True, null=True)
+    comment = models.ForeignKey(Comments,default="leave a comment",max_length=255,on_delete=models.CASCADE)
 
 
 
